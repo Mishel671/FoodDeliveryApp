@@ -1,6 +1,7 @@
 package ru.michaeldzyuba.fooddeliveryapp.domain
 
 import androidx.lifecycle.LiveData
+import ru.michaeldzyuba.fooddeliveryapp.data.api.model.ResponseFood
 
 interface FoodRepository {
 
@@ -8,5 +9,7 @@ interface FoodRepository {
 
     fun getAds():List<AdItem>
 
-    fun getFoodList(): LiveData<List<AdItem>>
+    fun getFoodList(foodName:String): LiveData<List<FoodItem>>
+
+    suspend fun loadFoodList(foodName:String)
 }

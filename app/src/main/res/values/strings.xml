@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FoodDeliveryApp</string>
+    <string name="title_burger">Бургер</string>
+    <string name="title_dessert">Десерты</string>
+    <string name="title_cocktail">Котейли</string>
 </resources>

@@ -1,7 +1,10 @@
 package ru.michaeldzyuba.fooddeliveryapp.domain
 
+import androidx.annotation.StringRes
+
 data class CategoryItem(
     val categoryId: Int,
-    val title: String,
+    @StringRes
+    val title: Int,
     val queryValue: String
 )

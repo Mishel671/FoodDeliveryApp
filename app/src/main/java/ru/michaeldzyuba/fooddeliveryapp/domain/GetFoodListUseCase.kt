@@ -5,5 +5,5 @@ import javax.inject.Inject
 class GetFoodListUseCase @Inject constructor(
     private val repository: FoodRepository
 ) {
-    operator fun invoke() = repository.getFoodList()
+    operator fun invoke(foodName: String) = repository.getFoodList(foodName)
 }
