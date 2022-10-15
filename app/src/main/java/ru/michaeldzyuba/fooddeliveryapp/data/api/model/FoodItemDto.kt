@@ -1,5 +1,7 @@
 package ru.michaeldzyuba.fooddeliveryapp.data.api.model
 
+import com.google.gson.annotations.SerializedName
+
 
 data class FoodItemDto(
     val badges: List<Any?>?,//In all api results, the list is empty
@@ -11,7 +13,8 @@ data class FoodItemDto(
     val images: List<String?>?,
     val likes: Int?,
     val numberOfServings: Int?,
-    val nutritionDto: NutritionDto?,
+    @SerializedName("nutrition")
+    val nutrition: NutritionDto?,
     val price: Float?,//In all api results, the value is null
     val readableServingSize: String?,
     val restaurantChain: String?,

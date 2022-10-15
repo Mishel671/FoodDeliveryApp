@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">FoodDeliveryApp</string>
-    <string name="title_burger">Бургер</string>
+    <string name="title_burger">Бургеры</string>
+    <string name="title_meat">Мясное</string>
     <string name="title_dessert">Десерты</string>
-    <string name="title_cocktail">Котейли</string>
+    <string name="title_cocktail">Коктейли</string>
+    <string name="title_menu">Меню</string>
+    <string name="title_user">Профиль</string>
+    <string name="title_cart">Корзина</string>
+    <string name="desc_user">Экран пользователя</string>
+    <string name="desc_cart">Экран покупок</string>
+    <string name="city">Москва</string>
+    <string name="fat_description">Жиры: %s</string>
+    <string name="protein_description">Белки: %s</string>
+    <string name="carbs_description">Углеводы: %s</string>
+    <string name="calories_description">%s кал.</string>
+    <string name="cost_text">от %s р</string>
+    <string name="cost_error_text">Sold</string>
 </resources>

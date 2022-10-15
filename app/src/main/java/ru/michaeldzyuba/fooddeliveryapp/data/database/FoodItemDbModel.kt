@@ -11,5 +11,9 @@ data class FoodItemDbModel(
     val title: String,
     val image: String,
     val price: Float,
+    val fat: String,
+    val protein: String,
+    val carbs: String,
+    val calories: Int,
     val requestName: String
 )

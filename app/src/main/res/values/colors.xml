@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bottom_nav_background">#F0F0F0</color>
+    <color name="bottom_nav_active">#FD3A69</color>
+    <color name="bottom_nav_inactive">#7B7B7B</color>
+    <color name="tab_bg_inactive">#F3F3F3</color>
+    <color name="tab_text_inactive">#C3C4C9</color>
+    <color name="tab_bg_active">#33FD3A69</color>
+    <color name="tab_text_active">#FD3A69</color>
+    <color name="toolbar_items_color">#2E2E33</color>
+    <color name="food_title">#222831</color>
+    <color name="food_description">#AAAAAD</color>
+    <color name="cost_frame">#FD3A69</color>
+    <color name="divider">#F3F5F9</color>
+    <color name="error_icon_bg">#FFC4CC</color>
+    <color name="placeholder_icon_bg">#E9EBFF</color>
 </resources>

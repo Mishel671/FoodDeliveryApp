@@ -1,4 +1,4 @@
-package ru.michaeldzyuba.fooddeliveryapp.utils
+package ru.michaeldzyuba.fooddeliveryapp.data
 
 import android.content.Context
 import android.net.ConnectivityManager

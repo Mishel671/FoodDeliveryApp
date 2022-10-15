@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/bottomNavigationContainerFragment">
+
+    <fragment
+        android:id="@+id/bottomNavigationContainerFragment"
+        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.BottomNavigationContainerFragment"
+        android:label="fragment_bottom_navigation_container"
+        tools:layout="@layout/fragment_bottom_navigation_container" >
+        <action
+            android:id="@+id/action_bottomNavigationContainerFragment_to_chooseCountryFragment"
+            app:destination="@id/chooseCountryFragment"
+            app:enterAnim="@anim/slide_enter_top"
+            app:popExitAnim="@anim/slide_exit_bottom" />
+        <action
+            android:id="@+id/action_bottomNavigationContainerFragment_to_detailMenuFragment"
+            app:destination="@id/detailMenuFragment"
+            app:enterAnim="@anim/slide_enter_left"
+            app:exitAnim="@anim/slide_exit_left"
+            app:popEnterAnim="@anim/slide_enter_right"
+            app:popExitAnim="@anim/slide_exit_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCountryFragment"
+        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.ChooseCountryFragment"
+        android:label="fragment_choose_country"
+        tools:layout="@layout/fragment_choose_country" />
+    <fragment
+        android:id="@+id/detailMenuFragment"
+        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.DetailMenuFragment"
+        android:label="fragment_detail_menu"
+        tools:layout="@layout/fragment_detail_menu" >
+        <argument
+            android:name="foodItem"
+            app:argType="ru.michaeldzyuba.fooddeliveryapp.domain.FoodItem" />
+    </fragment>
+</navigation>

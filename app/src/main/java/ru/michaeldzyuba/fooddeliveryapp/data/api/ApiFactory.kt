@@ -8,6 +8,7 @@ object ApiFactory {
 
     private val SERVER_URL = BuildConfig.SERVER_URL
 
+
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(SERVER_URL)

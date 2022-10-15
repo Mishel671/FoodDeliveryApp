@@ -6,12 +6,11 @@ import ru.michaeldzyuba.fooddeliveryapp.data.api.ApiService
 import ru.michaeldzyuba.fooddeliveryapp.data.database.FoodDao
 import ru.michaeldzyuba.fooddeliveryapp.data.mapper.mapToItem
 import ru.michaeldzyuba.fooddeliveryapp.data.mapper.mapToListDbModel
-import ru.michaeldzyuba.fooddeliveryapp.data.static.getAdsImage
-import ru.michaeldzyuba.fooddeliveryapp.data.static.getCategoriesList
+import ru.michaeldzyuba.fooddeliveryapp.data.staticdata.getAdsImage
+import ru.michaeldzyuba.fooddeliveryapp.data.staticdata.getCategoriesList
 import ru.michaeldzyuba.fooddeliveryapp.domain.AdItem
 import ru.michaeldzyuba.fooddeliveryapp.domain.CategoryItem
 import ru.michaeldzyuba.fooddeliveryapp.domain.FoodRepository
-import ru.michaeldzyuba.fooddeliveryapp.utils.isNetworkAvailable
 import javax.inject.Inject
 
 class FoodRepositoryImpl @Inject constructor(
@@ -32,7 +31,7 @@ class FoodRepositoryImpl @Inject constructor(
         if (isNetworkAvailable(application)) {
             try {
                 val responseFood = apiService.getFoodListByName(query = foodName)
-                val foodListDto = responseFood.foodList
+                val foodListDto = responseFood.menuItems
                 val foodListDbModel = foodListDto.mapToListDbModel(foodName)
                 foodDao.insertFoodList(foodListDbModel)
             } catch (e: Exception) {

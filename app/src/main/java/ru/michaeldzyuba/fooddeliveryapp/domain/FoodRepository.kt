@@ -1,7 +1,6 @@
 package ru.michaeldzyuba.fooddeliveryapp.domain
 
 import androidx.lifecycle.LiveData
-import ru.michaeldzyuba.fooddeliveryapp.data.api.model.ResponseFood
 
 interface FoodRepository {
 

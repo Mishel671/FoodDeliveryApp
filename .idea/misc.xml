@@ -3,7 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/bottom_nav_item_selector.xml" value="0.124" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/cost_frame_bg.xml" value="0.1535" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/divider_item.xml" value="0.1775" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/error_food_icon.xml" value="0.1775" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/ic_cart.xml" value="0.1" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/ic_food.xml" value="0.1775" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/ic_placeholder_food.xml" value="0.1775" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/ic_qr_code.xml" value="0.1535" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/ic_user.xml" value="0.1" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/tab_item_bg_active.xml" value="0.159" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/tab_item_bg_inactive.xml" value="0.159" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/tab_item_selector.xml" value="0.159" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/drawable/tab_item_text_color.xml" value="0.159" />
         <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/activity_main.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/ad_item.xml" value="0.253125" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/food_item.xml" value="0.264" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/fragment_bottom_navigation_container.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/fragment_cart.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/fragment_choose_country.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/fragment_detail_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/layout/fragment_user.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.253125" />
+        <entry key="..\:/Users/dzuba/AndroidStudioProjects/FoodDeliveryApp/app/src/main/res/menu/menu_nav_graph.xml" value="0.2076923076923077" />
       </map>
     </option>
   </component>
