@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.michaeldzyuba.fooddeliveryapp.domain.GetAdsListUseCase
-import ru.michaeldzyuba.fooddeliveryapp.domain.GetCategoriesListUseCase
-import ru.michaeldzyuba.fooddeliveryapp.domain.GetFoodListUseCase
-import ru.michaeldzyuba.fooddeliveryapp.domain.LoadFoodListUseCase
+import ru.michaeldzyuba.fooddeliveryapp.domain.*
 import javax.inject.Inject
 
 class MenuViewModel @Inject constructor(
@@ -19,27 +16,28 @@ class MenuViewModel @Inject constructor(
     private val getFoodListUseCase: GetFoodListUseCase
 ) : ViewModel() {
 
-
     fun getAdsList() = getAdsListUseCase()
 
     fun getCategoriesList() = getCategoriesListUseCase()
 
-    private val requestName = MutableLiveData<String>().apply {
-        val queryValue = getCategoriesList()[0].queryValue
-        value = queryValue
+    private val requestName = MutableLiveData<CategoryItem>().apply {
+        val categoryItem = getCategoriesList()[0]
+        value = categoryItem
         viewModelScope.launch(Dispatchers.IO) {
-            loadFoodListUseCase(queryValue)
+            loadFoodListUseCase(categoryItem.queryValue)
         }
     }
 
     val foodList = Transformations.switchMap(requestName) {
-        getFoodListUseCase(it)
+        getFoodListUseCase(it.queryValue)
     }
 
-    fun loadData(foodName: String) {
+    fun getActiveCategory() = requestName.value
+
+    fun loadData(foodName: CategoryItem) {
         requestName.value = foodName
         viewModelScope.launch(Dispatchers.IO) {
-            loadFoodListUseCase(foodName)
+            loadFoodListUseCase(foodName.queryValue)
         }
     }
 

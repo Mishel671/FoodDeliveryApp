@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -94,9 +95,13 @@ class MenuFragment : Fragment() {
         }
         binding.rvFoodList.adapter = foodAdapter
         val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-        itemDecoration.setDrawable(requireContext().getDrawable(R.drawable.divider_item)!!)
+        itemDecoration.setDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.divider_item
+            )!!
+        )
         binding.rvFoodList.addItemDecoration(itemDecoration)
-        val itemDecorator = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
 
         viewModel.foodList.observe(viewLifecycleOwner) {
             foodAdapter.submitList(it)
@@ -114,12 +119,18 @@ class MenuFragment : Fragment() {
             }
         }
 
+        //Save chosen tab
+        val tabSet = tabsWithData.filterValues { it == viewModel.getActiveCategory() }.keys
+        tabSet.forEach { tab ->
+            tab.select()
+        }
+
         binding.categoryTabLayout.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val categoryItem = tabsWithData[tab]
                 if (categoryItem != null) {
-                    viewModel.loadData(categoryItem.queryValue)
+                    viewModel.loadData(categoryItem)
                 }
             }
 

@@ -17,6 +17,6 @@ interface ApiService {
     ): ResponseFood
 
     companion object {
-        private const val FOOD_LIST_ROUTE = "search"
+        private const val FOOD_LIST_ROUTE = "food/menuItems/"
     }
 }

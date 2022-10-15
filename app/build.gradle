@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "SERVER_URL", "\"https://api.spoonacular.com/food/menuItems/\""
+            buildConfigField "String", "SERVER_URL", "\"https://api.spoonacular.com/\""
             buildConfigField "String", "API_KEY", "\"e4042742f281413ebf5d74640c0ddfad\""
         }
         release {
