@@ -10,5 +10,5 @@ interface FoodRepository {
 
     fun getFoodList(foodName:String): LiveData<List<FoodItem>>
 
-    suspend fun loadFoodList(foodName:String)
+    suspend fun loadFoodList(foodName:String):String?
 }

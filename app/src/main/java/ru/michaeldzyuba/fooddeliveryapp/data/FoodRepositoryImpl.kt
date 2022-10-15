@@ -2,6 +2,7 @@ package ru.michaeldzyuba.fooddeliveryapp.data
 
 import android.app.Application
 import androidx.lifecycle.Transformations
+import retrofit2.HttpException
 import ru.michaeldzyuba.fooddeliveryapp.data.api.ApiService
 import ru.michaeldzyuba.fooddeliveryapp.data.database.FoodDao
 import ru.michaeldzyuba.fooddeliveryapp.data.mapper.mapToItem
@@ -12,6 +13,7 @@ import ru.michaeldzyuba.fooddeliveryapp.domain.AdItem
 import ru.michaeldzyuba.fooddeliveryapp.domain.CategoryItem
 import ru.michaeldzyuba.fooddeliveryapp.domain.FoodRepository
 import javax.inject.Inject
+
 
 class FoodRepositoryImpl @Inject constructor(
     private val application: Application,
@@ -27,17 +29,26 @@ class FoodRepositoryImpl @Inject constructor(
         return getAdsImage()
     }
 
-    override suspend fun loadFoodList(foodName: String) {
+    override suspend fun loadFoodList(foodName: String): String? {
         if (isNetworkAvailable(application)) {
             try {
                 val responseFood = apiService.getFoodListByName(query = foodName)
                 val foodListDto = responseFood.menuItems
                 val foodListDbModel = foodListDto.mapToListDbModel(foodName)
                 foodDao.insertFoodList(foodListDbModel)
-            } catch (e: Exception) {
-                e.printStackTrace()
+                return null
+            } catch (throwable: Throwable) {
+                if (throwable is HttpException) {
+                    val code = throwable.code()
+                    val error = throwable.localizedMessage
+                    return "Status code $code. Error: $error"
+                }
+                return throwable.message
             }
+        } else {
+            return NO_INTERNET
         }
+
     }
 
     override fun getFoodList(foodName: String) =
@@ -47,4 +58,8 @@ class FoodRepositoryImpl @Inject constructor(
                     foodDbModel.mapToItem()
                 }
             }
+
+    companion object {
+        private const val NO_INTERNET = "No internet connection"
+    }
 }

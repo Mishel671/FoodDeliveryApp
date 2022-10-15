@@ -1,9 +1,6 @@
 package ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.michaeldzyuba.fooddeliveryapp.domain.*
@@ -19,6 +16,10 @@ class MenuViewModel @Inject constructor(
     fun getAdsList() = getAdsListUseCase()
 
     fun getCategoriesList() = getCategoriesListUseCase()
+
+    private val _errorLoad = MutableLiveData<String>()
+    val errorLoad: LiveData<String>
+        get() = _errorLoad
 
     private val requestName = MutableLiveData<CategoryItem>().apply {
         val categoryItem = getCategoriesList()[0]
@@ -37,7 +38,10 @@ class MenuViewModel @Inject constructor(
     fun loadData(foodName: CategoryItem) {
         requestName.value = foodName
         viewModelScope.launch(Dispatchers.IO) {
-            loadFoodListUseCase(foodName.queryValue)
+            val errorMessage = loadFoodListUseCase(foodName.queryValue)
+            if (errorMessage != null) {
+                _errorLoad.postValue(errorMessage!!)
+            }
         }
     }
 
