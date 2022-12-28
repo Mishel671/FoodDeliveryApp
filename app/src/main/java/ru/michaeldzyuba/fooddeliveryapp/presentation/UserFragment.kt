@@ -13,6 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import ru.michaeldzyuba.fooddeliveryapp.R
 import ru.michaeldzyuba.fooddeliveryapp.databinding.FragmentUserBinding
@@ -38,11 +40,23 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val fullName = AppPreferences.getFullName()
+        if (fullName.isNotEmpty()) {
+            binding.tvFullName.text = fullName
+        }
+        val age = AppPreferences.getAge()
+        if (age != -1) {
+            binding.tvAge.text = age.toString()
+        }
         binding.ivAvatar.setOnClickListener {
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
             startActivityForResult(photoPickerIntent, SELECT_PHOTO)
+        }
+        binding.btnLogout.setOnClickListener {
+            AppPreferences.clearAll()
+            requireActivity().findNavController(R.id.fragmentContainer)
+                .navigate(R.id.action_bottomNavigationContainerFragment_to_loginFragment)
         }
     }
 
@@ -68,7 +82,7 @@ class UserFragment : Fragment() {
         Picasso.get()
             .load(Uri.parse(uri))
             .centerCrop()
-            .resize(binding.ivAvatar.getMeasuredWidth(),binding.ivAvatar.getMeasuredHeight())
+            .resize(binding.ivAvatar.getMeasuredWidth(), binding.ivAvatar.getMeasuredHeight())
             .transform(RoundedCornersTransform(1000, 0))
             .error(R.drawable.ic_user)
             .into(binding.ivAvatar)

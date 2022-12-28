@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/bottomNavigationContainerFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/bottomNavigationContainerFragment"
@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_exit_left"
             app:popEnterAnim="@anim/slide_enter_right"
             app:popExitAnim="@anim/slide_exit_right"/>
+        <action
+            android:id="@+id/action_bottomNavigationContainerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailMenuFragment"
@@ -26,5 +29,14 @@
         <argument
             android:name="foodItem"
             app:argType="ru.michaeldzyuba.fooddeliveryapp.domain.FoodItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_bottomNavigationContainerFragment"
+            app:destination="@id/bottomNavigationContainerFragment" />
     </fragment>
 </navigation>
