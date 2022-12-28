@@ -13,8 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.squareup.picasso.Picasso
+import ru.michaeldzyuba.fooddeliveryapp.R
 import ru.michaeldzyuba.fooddeliveryapp.databinding.FragmentUserBinding
 import ru.michaeldzyuba.fooddeliveryapp.utils.AppPreferences
+import ru.michaeldzyuba.fooddeliveryapp.utils.RoundedCornersTransform
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
@@ -35,12 +38,17 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setImage()
+
         binding.ivAvatar.setOnClickListener {
             val photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
             startActivityForResult(photoPickerIntent, SELECT_PHOTO)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setImage()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -57,18 +65,21 @@ class UserFragment : Fragment() {
 
     private fun setImage() {
         val uri = AppPreferences.getImage()
-        if (uri.isNotEmpty()) {
-
-            binding.ivAvatar.setImageBitmap(stringToBitmap(uri))
-        }
+        Picasso.get()
+            .load(Uri.parse(uri))
+            .centerCrop()
+            .resize(binding.ivAvatar.getMeasuredWidth(),binding.ivAvatar.getMeasuredHeight())
+            .transform(RoundedCornersTransform(1000, 0))
+            .error(R.drawable.ic_user)
+            .into(binding.ivAvatar)
 
     }
 
     private fun getImage(uri: Uri?) {
-        var bitmap: Bitmap? = null
+//        var bitmap: Bitmap? = null
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), uri)
-            AppPreferences.saveImage(bitmapToString(bitmap))
+//            bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), uri)
+            AppPreferences.saveImage(uri?.toString() ?: "")
             setImage()
         } catch (e: IOException) {
             e.printStackTrace()
@@ -76,17 +87,17 @@ class UserFragment : Fragment() {
         }
     }
 
-    private fun bitmapToString(bitmap: Bitmap): String {
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val b = baos.toByteArray()
-        return Base64.encodeToString(b, Base64.DEFAULT)
-    }
+//    private fun bitmapToString(bitmap: Bitmap): String {
+//        val baos = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+//        val b = baos.toByteArray()
+//        return Base64.encodeToString(b, Base64.DEFAULT)
+//    }
 
-    private fun stringToBitmap(image: String): Bitmap? {
-        val b = Base64.decode(image, Base64.DEFAULT)
-        return BitmapFactory.decodeByteArray(b, 0, b.size)
-    }
+//    private fun stringToBitmap(image: String): Bitmap? {
+//        val b = Base64.decode(image, Base64.DEFAULT)
+//        return BitmapFactory.decodeByteArray(b, 0, b.size)
+//    }
 
     companion object {
         private const val SELECT_PHOTO = 111
