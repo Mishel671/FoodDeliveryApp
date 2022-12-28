@@ -60,6 +60,7 @@ class MenuFragment : Fragment() {
         setupAdRecyclerView()
         setupFoodRecyclerView()
         buttonListeners()
+
         viewModel.errorLoad.observe(viewLifecycleOwner) { error ->
             Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show()
         }
