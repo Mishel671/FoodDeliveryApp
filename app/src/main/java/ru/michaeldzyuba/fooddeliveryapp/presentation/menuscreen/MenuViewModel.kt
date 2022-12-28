@@ -10,7 +10,8 @@ class MenuViewModel @Inject constructor(
     private val getAdsListUseCase: GetAdsListUseCase,
     private val getCategoriesListUseCase: GetCategoriesListUseCase,
     private val loadFoodListUseCase: LoadFoodListUseCase,
-    private val getFoodListUseCase: GetFoodListUseCase
+    private val getFoodListUseCase: GetFoodListUseCase,
+    private val buyFoodItemUseCase: BuyFoodItemUseCase
 ) : ViewModel() {
 
     fun getAdsList() = getAdsListUseCase()
@@ -42,6 +43,12 @@ class MenuViewModel @Inject constructor(
             if (errorMessage != null) {
                 _errorLoad.postValue(errorMessage!!)
             }
+        }
+    }
+
+    fun buyFoodItem(foodItem: FoodItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            buyFoodItemUseCase(foodItem.copy(isCart = true))
         }
     }
 

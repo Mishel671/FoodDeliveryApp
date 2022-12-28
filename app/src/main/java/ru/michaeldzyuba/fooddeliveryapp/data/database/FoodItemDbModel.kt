@@ -15,5 +15,6 @@ data class FoodItemDbModel(
     val protein: String,
     val carbs: String,
     val calories: Int,
-    val requestName: String
+    val requestName: String,
+    val isCart: Boolean? = false
 )

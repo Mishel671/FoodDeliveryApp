@@ -1,8 +1,12 @@
 package ru.michaeldzyuba.fooddeliveryapp.presentation
 
+import android.R.attr
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ru.michaeldzyuba.fooddeliveryapp.R
+
 
 class MainActivity : AppCompatActivity() {
 

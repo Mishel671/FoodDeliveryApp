@@ -1,7 +1,7 @@
 package ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen
 
-
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
@@ -18,12 +19,10 @@ import ru.michaeldzyuba.fooddeliveryapp.FoodApp
 import ru.michaeldzyuba.fooddeliveryapp.R
 import ru.michaeldzyuba.fooddeliveryapp.databinding.FragmentMenuBinding
 import ru.michaeldzyuba.fooddeliveryapp.domain.CategoryItem
-import ru.michaeldzyuba.fooddeliveryapp.presentation.BottomNavigationContainerFragmentDirections
 import ru.michaeldzyuba.fooddeliveryapp.presentation.ViewModelFactory
 import ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.adapter.ad.AdListAdapter
 import ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.adapter.food.FoodListAdapter
 import javax.inject.Inject
-
 
 class MenuFragment : Fragment() {
 
@@ -66,10 +65,25 @@ class MenuFragment : Fragment() {
         }
     }
 
+
+
     private fun buttonListeners() {
+        setFragmentResultListener(CITY_RESULT_KEY) { key, bundle ->
+            val city = bundle.getString(CITY_RESULT_ITEM_KEY)
+            if (city is String) binding.tvCity.text = city
+        }
         binding.chooseCountryBtn.setOnClickListener {
-            requireActivity().findNavController(R.id.fragmentContainer)
-                .navigate(R.id.action_bottomNavigationContainerFragment_to_chooseCountryFragment)
+            findNavController()
+                .navigate(R.id.action_menuFragment_to_chooseCountryFragment2)
+        }
+        binding.btnQR.setOnClickListener {
+            try {
+                val intent = Intent("android.media.action.IMAGE_CAPTURE")
+                requireActivity().startActivityForResult(intent, 1)
+            } catch (e: Exception) {
+                Toast.makeText(requireActivity(), "Give camera permission", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
@@ -90,11 +104,14 @@ class MenuFragment : Fragment() {
     private fun setupFoodRecyclerView() {
         val foodAdapter = FoodListAdapter(requireContext())
         foodAdapter.onClick = { foodItem ->
-            requireActivity().findNavController(R.id.fragmentContainer)
-                .navigate(
-                    BottomNavigationContainerFragmentDirections
-                        .actionBottomNavigationContainerFragmentToDetailMenuFragment(foodItem)
-                )
+//            requireActivity().findNavController(R.id.fragmentContainer)
+//                .navigate(
+//                    BottomNavigationContainerFragmentDirections
+//                        .actionBottomNavigationContainerFragmentToDetailMenuFragment(foodItem)
+//                )
+        }
+        foodAdapter.onClickBuy = { foodItem ->
+            viewModel.buyFoodItem(foodItem)
         }
         binding.rvFoodList.adapter = foodAdapter
         val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
@@ -143,5 +160,10 @@ class MenuFragment : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
+    }
+
+    companion object {
+        const val CITY_RESULT_KEY = "spec_result_key"
+        const val CITY_RESULT_ITEM_KEY = "spec_result_item_key"
     }
 }

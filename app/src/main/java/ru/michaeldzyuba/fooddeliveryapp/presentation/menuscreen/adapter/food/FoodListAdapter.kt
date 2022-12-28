@@ -16,6 +16,7 @@ class FoodListAdapter(
 ) : ListAdapter<FoodItem, FoodItemViewHolder>(FoodItemCallback) {
 
     var onClick: ((FoodItem) -> Unit)? = null
+    var onClickBuy: ((FoodItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodItemViewHolder {
         val binding = FoodItemBinding.inflate(
@@ -37,7 +38,7 @@ class FoodListAdapter(
             tvCalories.text =
                 formatString(R.string.calories_description, foodItem.calories.toString())
             tvCost.text = if (foodItem.price == INCORRECT_VALUE_FLOAT)
-                context.getString(R.string.cost_error_text)
+                "Buy"
             else
                 formatString(R.string.cost_text, foodItem.price.toString())
 
@@ -49,6 +50,9 @@ class FoodListAdapter(
 
             root.setOnClickListener {
                 onClick?.invoke(foodItem)
+            }
+            binding.tvCost.setOnClickListener{
+                onClickBuy?.invoke(foodItem)
             }
         }
 

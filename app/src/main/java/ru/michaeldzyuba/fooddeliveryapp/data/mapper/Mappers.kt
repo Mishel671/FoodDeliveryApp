@@ -31,7 +31,7 @@ private fun FoodItemDto.mapToDbModel(requestName: String): FoodItemDbModel {
         fat = foodDto.nutrition?.fat ?: INCORRECT_STRING,
         protein = foodDto.nutrition?.protein ?: INCORRECT_STRING,
         carbs = foodDto.nutrition?.carbs ?: INCORRECT_STRING,
-        calories = foodDto.nutrition?.calories?: INCORRECT_VALUE_INT,
+        calories = foodDto.nutrition?.calories ?: INCORRECT_VALUE_INT,
         requestName = requestName
     )
 }
@@ -47,6 +47,24 @@ fun FoodItemDbModel.mapToItem(): FoodItem {
         fat = foodDbModel.fat,
         protein = foodDbModel.protein,
         carbs = foodDbModel.carbs,
-        calories = foodDbModel.calories
+        calories = foodDbModel.calories,
+        requestName = requestName,
+        isCart = isCart
+    )
+}
+
+fun FoodItem.mapToDB(): FoodItemDbModel {
+    return FoodItemDbModel(
+        id = id,
+        foodId = foodId,
+        title = title,
+        image = image,
+        price = price,
+        fat = fat,
+        protein = protein,
+        carbs = carbs,
+        calories = calories,
+        requestName =requestName,
+        isCart = isCart
     )
 }

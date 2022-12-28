@@ -1,26 +1,21 @@
-package ru.michaeldzyuba.fooddeliveryapp.presentation
+package ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.city
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.findNavController
-import ru.michaeldzyuba.fooddeliveryapp.R
 import ru.michaeldzyuba.fooddeliveryapp.data.staticdata.getCities
-import ru.michaeldzyuba.fooddeliveryapp.databinding.FragmentChooseCountryBinding
 import ru.michaeldzyuba.fooddeliveryapp.databinding.FragmentCityBinding
 import ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.MenuFragment
-import ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.city.CityAdapter
-import ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.city.CityFragment
 
 
-class ChooseCountryFragment : Fragment() {
+class CityFragment : Fragment() {
 
-    private var _binding: FragmentChooseCountryBinding? = null
-    private val binding: FragmentChooseCountryBinding
+    private var _binding: FragmentCityBinding? = null
+    private val binding: FragmentCityBinding
         get() = _binding ?: throw RuntimeException("FragmentCartBinding == null")
 
     private val cityAdapter = CityAdapter(getCities())
@@ -29,7 +24,7 @@ class ChooseCountryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentChooseCountryBinding.inflate(inflater, container, false)
+        _binding = FragmentCityBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,7 +35,7 @@ class ChooseCountryFragment : Fragment() {
                 MenuFragment.CITY_RESULT_KEY,
                 bundleOf(MenuFragment.CITY_RESULT_ITEM_KEY to it)
             )
-            findNavController().popBackStack()
+            parentFragmentManager.popBackStack()
         }
         binding.rvCity.adapter = cityAdapter
     }
@@ -48,7 +43,6 @@ class ChooseCountryFragment : Fragment() {
     companion object {
 
         fun newInstance() =
-            ChooseCountryFragment()
+            CityFragment()
     }
-
 }

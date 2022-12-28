@@ -7,14 +7,21 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.CartFragment"
+        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/menuFragment"
         android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.menuscreen.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_chooseCountryFragment2"
+            app:destination="@id/chooseCountryFragment2"
+            app:enterAnim="@anim/slide_enter_top"
+            app:popExitAnim="@anim/slide_exit_bottom"
+            app:popUpTo="@id/menuFragment" />
+    </fragment>
 
 
     <fragment
@@ -22,4 +29,9 @@
         android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/chooseCountryFragment2"
+        android:name="ru.michaeldzyuba.fooddeliveryapp.presentation.ChooseCountryFragment"
+        android:label="fragment_choose_country"
+        tools:layout="@layout/fragment_choose_country" />
 </navigation>

@@ -16,4 +16,6 @@
     <string name="calories_description">%s кал.</string>
     <string name="cost_text">от %s р</string>
     <string name="cost_error_text">Sold</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
